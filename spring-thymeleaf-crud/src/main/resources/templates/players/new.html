@@ -10,16 +10,19 @@
   <body>
     <div class="container">
       <h1>New Player</h1>
-      <form th:action="@{/players}" th:method="post">
 
-        <div class="form-group">
+      <form th:action="@{/players}" th:method="post" th:object="${player}">
+
+     <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
           <label class="control-label">名前</label>
-          <input class="form-control" type="text" name="name" />
+          <input class="form-control" type="text" th:field="*{name}" />
+          <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </div>
 
-        <div class="form-group">
+         <div class="form-group" th:classappend="${#fields.hasErrors('age')}? has-error">
           <label class="control-label">年齢</label>
-          <input class="form-control" type="number" name="age" />
+          <input class="form-control" type="number" th:field="*{age}" />
+          <span class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
         </div>
 
 
@@ -42,7 +45,7 @@
           <label class="control-label">チーム名</label>
            <select class="form-control" name="team" >
           		<option value="おさかなさんチーム">おさかなさんチーム</option>
-          		<option value="♰漆黒の旋風♰">♰漆黒の旋風♰</option>
+          		<option value="♰漆黒の旋風♰">♰ 漆黒の旋風 ♰</option>
           		<option value="地球外運命共同体">地球外運命共同体</option>
            </select>
         </div>

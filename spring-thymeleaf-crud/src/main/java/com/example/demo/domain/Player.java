@@ -4,16 +4,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	// id
 	private Long id;
+
+	// name
+	@NotEmpty @Size(max=30)
 	private String name;
-	private String team;
-	private String position;
+
+	// age
+	@NotNull @Min(value=0) @Max(value= 150)
 	private Integer age;
+
+	// team
+	private String team;
+
+	// position
+	private String position;
 
 
 	// setter&getter : Start here

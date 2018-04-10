@@ -2,9 +2,12 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,6 +34,8 @@ public class PlayerController {
 
 	@GetMapping ("new")
 	public String newPlayer(Model model) {
+		Player player = new Player();
+		model.addAttribute("player",player);
 		return "players/new";
 	}
 
@@ -48,10 +53,22 @@ public class PlayerController {
 		return "players/show";
 	}
 
+	@PostMapping
+	public String create(@Valid @ModelAttribute Player player ,BindingResult bindingResult) {
+
+		if(bindingResult.hasErrors()) return "players/new";
+		playerService.save(player);
+		return "redirect:/players";
+	}
+
 	@PutMapping("{id}")
 	public String update(
 			@PathVariable Long id ,
-			@ModelAttribute Player player) {
+			@Valid
+			@ModelAttribute Player player,
+			BindingResult bindingResult ) {
+
+		if (bindingResult.hasErrors()) return "users/edit";
 		 player.setId(id);
 		 playerService.save(player);
 		 return "redirect:/players";
@@ -64,11 +81,7 @@ public class PlayerController {
 		 return "redirect:/players";
 	}
 
-	@PostMapping
-	public String create(@ModelAttribute Player player) {
-		playerService.save(player);
-		return "redirect:/players";
-	}
+
 
 
 
