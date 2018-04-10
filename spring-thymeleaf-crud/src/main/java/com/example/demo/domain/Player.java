@@ -47,8 +47,9 @@ public class Player {
 	public String getTeam() {
 		return team;
 	}
-	public void setId(String team) {
+	public void setTeam(String team) {
 		this.team = team;
+
 	}
 
 	/****************
@@ -77,8 +78,9 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", name=" + name + ", age=" + age +
-				", team=" + team + ", position=" + position + " ]";
+		return "Player [id=" + id + ", name=" + name +
+				", age=" + age + ", team="+ team +
+				 ", position=" + position + " ]";
 	}
 
 
