@@ -1,13 +1,8 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,36 +22,31 @@ public class PlayerController {
 
 	@GetMapping // ("/players")
 	public String index(Model model) {
-		List<Player> players = playerService.findAll();
-		model.addAttribute("players",players);
+		model.addAttribute("players",playerService.findAll());
 		return "players/index";
 	}
 
 	@GetMapping ("new")
-	public String newPlayer(Model model) {
-		Player player = new Player();
-		model.addAttribute("player",player);
+	public String newPlayer() {
 		return "players/new";
 	}
 
 	@GetMapping("{id}/edit")
 	public String edit(@PathVariable Long id ,Model model) {
-		Player player = playerService.findOne(id);
-		model.addAttribute("player",player);
+		model.addAttribute("player",playerService.findOne(id));
 		return "players/edit";
 	}
 
 	@GetMapping("{id}")
 	public String show(@PathVariable Long id ,Model model) {
-		Player player = playerService.findOne(id);
-		model.addAttribute("player",player);
+		model.addAttribute("player",playerService.findOne(id));
 		return "players/show";
 	}
 
-	@PostMapping
-	public String create(@Valid @ModelAttribute Player player ,BindingResult bindingResult) {
 
-		if(bindingResult.hasErrors()) return "players/new";
+	@PostMapping
+	public String create( @ModelAttribute Player player ) {
+
 		playerService.save(player);
 		return "redirect:/players";
 	}
@@ -64,11 +54,8 @@ public class PlayerController {
 	@PutMapping("{id}")
 	public String update(
 			@PathVariable Long id ,
-			@Valid
-			@ModelAttribute Player player,
-			BindingResult bindingResult ) {
+			@ModelAttribute Player player) {
 
-		if (bindingResult.hasErrors()) return "users/edit";
 		 player.setId(id);
 		 playerService.save(player);
 		 return "redirect:/players";

@@ -2,34 +2,37 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Player;
-import com.example.demo.repository.PlayerRepository;
+import com.example.demo.mapper.PlayerMapper;
 
 
 
 @Service
 public class PlayerService {
 	@Autowired // 自動紐付け いちいち new しなくてよくなる
-	private PlayerRepository playerRepository;
+	private PlayerMapper playerMapper;
 
 	// functions
+	@Transactional
 	public List<Player> findAll() {
-		return playerRepository.findAll();
+		return playerMapper.findAll();
 	}
-
+	@Transactional
 	public Player findOne(Long id) {
-		return playerRepository.findOne(id);
+		return playerMapper.findOne(id);
 	}
-
-	public Player save(Player player) {
-		return playerRepository.save(player);
+	@Transactional
+	public void save(Player player) {
+		playerMapper.save(player);
 	}
-
+	@Transactional
 	public void delete(Long id) {
-		 playerRepository.delete(id);
+		playerMapper.delete(id);
 	}
 
 }

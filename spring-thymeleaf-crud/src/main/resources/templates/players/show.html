@@ -1,42 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
   <head>
-    <meta charset="utf-8" />
-    <title>Show Player - baseball</title>
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <script src="/js/jquery.js"></script>
-    <script src="/js/bootstrap.js"></script>
+    <title>Show Player</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Show Player</h1>
-      <div th:object="${player}">
-        <div>
-          <label>ID</label>
-          <p th:text="*{id}"></p>
+    <div class="panel panel-primary" layout:fragment="content">
+      <div class="panel-heading">Show Player</div>
+      <div class="panel-body">
+        <div class="form-horizontal" th:object="${player}">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Name</label>
+            <div class="col-md-9 form-control-static" th:text="*{name}"></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Team</label>
+            <div class="col-md-9 form-control-static" th:text="*{team}"></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Position</label>
+            <div class="col-md-9 form-control-static" th:text="*{position}"></div>
+          </div>
         </div>
-        <div>
-          <label>名前</label>
-          <p th:text="*{name}"></p>
-        </div>
-        <div>
-          <label>年齢</label>
-          <p th:text="*{age}"></p>
-        </div>
-        <div>
-          <label>チーム名</label>
-          <p th:text="*{team}"></p>
-        </div>
-        <div>
-          <label>守備位置</label>
-          <p th:text="*{position}"></p>
-        </div>
-      </div>
-      <div>
-        <a class="btn btn-default" th:href="@{/players/{id}/edit(id=*{id})}">編集</a>
-      </div>
-      <div class="pull-right">
-        <a class="btn btn-link" href="/players">一覧画面へ</a>
       </div>
     </div>
   </body>

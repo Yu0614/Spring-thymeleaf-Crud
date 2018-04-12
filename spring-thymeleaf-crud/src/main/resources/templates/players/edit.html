@@ -1,56 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
   <head>
-    <meta charset="utf-8" />
-    <title>Editing Player - baseball</title>
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <script src="/js/jquery.js"></script>
-    <script src="/js/bootstrap.js"></script>
+    <title>Editing Player</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Editing Player</h1>
-
-
-       <form th:action="@{/players/{id}(id=*{id})}" th:method="put" th:object="${player}">
-        <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
-          <label class="control-label">名前</label>
-          <input class="form-control" type="text" th:field="*{name}" />
-          <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-        </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('age')}? has-error">
-          <label class="control-label">年齢</label>
-          <input class="form-control" type="number" th:field="*{age}" />
-          <span class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
-        </div>
-
-        <div class="form-group">
-          <label class="control-label">チーム名</label>
-           <select class="form-control" name="team" >
-          		<option>おさかなさんチーム</option>
-          		<option>♰漆黒の旋風♰</option>
-          		<option>地球外運命共同体</option>
-           </select>
-        </div>
-         <div class="form-group">
-          <label class="control-label">守備位置</label>
-          <select class="form-control" name="position" >
-          	<option value="ピッチャー" >ピッチャー</option>
-          	<option value="キャッチャー">キャッチャー</option>
-          	<option value="ファースト">ファースト</option>
-          	<option value="セカンド">セカンド</option>
-          	<option value="サード">サード</option>
-          	<option value="ショート">ショート</option>
-          	<option value="レフト">レフト</option>
-          	<option value="センター">センター</option>
-          	<option value="ライト">ライト</option>
-
-          </select>
-        </div>
-        <button class="btn btn-default" type="submit">更新</button>
-      </form>
-      <div class="pull-right">
-        <a class="btn btn-link" href="/players">一覧画面へ</a>
+    <div class="panel panel-primary" layout:fragment="content">
+      <div class="panel-heading">Editing Player</div>
+      <div class="panel-body">
+        <form class="form-horizontal" th:action="@{/players/{id}(id=*{id})}" th:method="put" th:object="${player}">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Name</label>
+            <div class="col-md-9">
+              <input class="form-control" type="text" th:field="*{name}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Team</label>
+            <div class="col-md-9">
+              <input class="form-control" type="text" th:field="*{team}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Position</label>
+            <div class="col-md-9">
+              <input class="form-control" type="text" th:field="*{position}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+              <button class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </body>
