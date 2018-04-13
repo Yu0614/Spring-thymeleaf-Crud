@@ -31,6 +31,10 @@ public class PlayerService {
 		playerMapper.save(player);
 	}
 	@Transactional
+	public void update(Player player) {
+		playerMapper.update(player);
+	}
+	@Transactional
 	public void delete(Long id) {
 		playerMapper.delete(id);
 	}

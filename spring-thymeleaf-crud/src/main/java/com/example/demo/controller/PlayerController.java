@@ -57,7 +57,7 @@ public class PlayerController {
 			@ModelAttribute Player player) {
 
 		 player.setId(id);
-		 playerService.save(player);
+		 playerService.update(player);
 		 return "redirect:/players";
 	}
 
