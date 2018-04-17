@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>top page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p>List Table</p>
+	<table class="list">
+  		<tr>
+    		<th>ID</th>
+			<th>名前</th>
+  		</tr>
+  		<tr th:each="list:${list}">
+    		<td th:text="${list.id}"></td>
+    		<td th:text="${list.name}"></td>
+  		</tr>
+	</table>
+
+	<p>New Register</p>
+	<form method="post" name="create" action="/sample" accept-charset="UTF8">
+    	<input type="text" name="name"/>
+    	<input type="submit" value="新規登録" />
+	</form>
+
+	<p>Update</p>
+	<form method="post" action="/sample/:id">
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="name">
+    <input type="submit">
+</form>
+
+<a href="javascript:void(0);" onclick="destory_func();">削除</a>
+function destory_func() {
+    var form = document.createElement("form");
+    var hidden = document.createElement("input");
+    form.method = "post";
+    form.action = "/sample/" + id;
+    hidden.type = "hidden";
+    hidden.name = "_method"
+    hidden.value = "delete";
+    form.appendChild(hidden);
+    document.body.appendChild(form);
+    form.submit();
+}
+</body>
+</html>

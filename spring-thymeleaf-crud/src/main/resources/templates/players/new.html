@@ -10,23 +10,51 @@
       <div class="panel-body">
         <form class="form-horizontal" th:method="post" th:action="@{/players}" th:object="${player}">
           <div class="form-group">
-            <label class="col-md-3 control-label">Name</label>
+            <label class="col-md-3 control-label">名前</label>
             <div class="col-md-9">
               <input class="form-control" type="text" name="name" />
             </div>
           </div>
+
+         <!-- Team section -->
           <div class="form-group">
-            <label class="col-md-3 control-label">Team</label>
+            <label class="col-md-3 control-label">チーム名</label>
             <div class="col-md-9">
-              <input class="form-control" type="text" name="team" />
+             <!-- <input class="form-control" type="text" th:field="*{team}" /> -->
+             <select class="form-control" name="team" >
+          		<option>おさかなさんチーム</option>
+          		<option>♰漆黒の旋風♰</option>
+          		<option>地球外運命共同体</option>
+           </select>
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-md-3 control-label">Position</label>
+            <label class="col-md-3 control-label">守備位置</label>
             <div class="col-md-9">
-              <input class="form-control" type="text" name="position" />
+             <!--  <input class="form-control" type="text" th:field="*{position}" /> -->
+          <select class="form-control" name="position" >
+          	<option value="ピッチャー" >ピッチャー</option>
+          	<option value="キャッチャー">キャッチャー</option>
+          	<option value="ファースト">ファースト</option>
+          	<option value="セカンド">セカンド</option>
+          	<option value="サード">サード</option>
+          	<option value="ショート">ショート</option>
+          	<option value="レフト">レフト</option>
+          	<option value="センター">センター</option>
+          	<option value="ライト">ライト</option>
+          </select>
             </div>
           </div>
+			<!--
+          <div class="form-group">
+            <label class="col-md-3 control-label">年齢</label>
+            <div class="col-md-9">
+              <input class="form-control" type="text" name="age" />
+            </div>
+          </div> -->
+
+
           <div class="form-group">
             <div class="col-md-offset-3 col-md-9">
               <button class="btn btn-primary">Create</button>

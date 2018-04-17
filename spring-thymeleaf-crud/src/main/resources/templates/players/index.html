@@ -18,9 +18,9 @@
           <tr>
             <th>ID</th>
             <th>名前</th>
-            <!--  <th>年齢</th>-->
             <th>チーム名</th>
             <th>守備位置</th>
+             <th>年齢</th>
             <th></th>
             <th></th>
             <th></th>
@@ -33,6 +33,7 @@
             <td th:text="*{name}"></td>
             <td th:text="*{team}"></td>
             <td th:text="*{position}"></td>
+           <!--  <td th:text="*{age}"></td>-->
             <td><a class="btn btn-default btn-xs" th:href="@{/players/{id}(id=*{id})}">一覧</a></td>
             <td><a class="btn btn-default btn-xs" th:href="@{/players/{id}/edit(id=*{id})}">編集</a></td>
             <td>

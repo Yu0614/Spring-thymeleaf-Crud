@@ -7,19 +7,30 @@
     <div class="panel panel-primary" layout:fragment="content">
       <div class="panel-heading">Show Player</div>
       <div class="panel-body">
+      		<!-- Database object の引き込み -->
         <div class="form-horizontal" th:object="${player}">
+          <!-- 名前 -->
           <div class="form-group">
-            <label class="col-md-3 control-label">Name</label>
+            <label class="col-md-3 control-label">名前</label>
             <div class="col-md-9 form-control-static" th:text="*{name}"></div>
           </div>
+          <!-- チーム -->
           <div class="form-group">
-            <label class="col-md-3 control-label">Team</label>
+            <label class="col-md-3 control-label">チーム</label>
             <div class="col-md-9 form-control-static" th:text="*{team}"></div>
           </div>
+          <!-- チーム -->
           <div class="form-group">
-            <label class="col-md-3 control-label">Position</label>
+            <label class="col-md-3 control-label">ポジション</label>
             <div class="col-md-9 form-control-static" th:text="*{position}"></div>
           </div>
+
+          <!-- 年齢
+          <div class="form-group">
+            <label class="col-md-3 control-label">年齢</label>
+            <div class="col-md-9 form-control-static" th:text="*{age}"></div>
+          </div>-->
+
         </div>
       </div>
     </div>
