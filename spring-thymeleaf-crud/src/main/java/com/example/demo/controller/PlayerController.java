@@ -15,43 +15,43 @@ import com.example.demo.domain.Player;
 import com.example.demo.service.PlayerService;
 
 @Controller
-@RequestMapping("/players")
+
 public class PlayerController {
 	@Autowired
 	private PlayerService playerService;
 
-	@GetMapping // ("/players")
-	public String index(Model model) {
+	@GetMapping ("/players")
+	public String players(Model model) {
 		model.addAttribute("players",playerService.findAll());
 		return "players/index";
 	}
 
-	@GetMapping ("new")
+	@GetMapping ("players/new")
 	public String newPlayer() {
 		return "players/new";
 	}
 
-	@GetMapping("{id}/edit")
+	@GetMapping("players/{id}/edit")
 	public String edit(@PathVariable Long id ,Model model) {
 		model.addAttribute("player",playerService.findOne(id));
 		return "players/edit";
 	}
 
-	@GetMapping("{id}")
+	@GetMapping("players/{id}")
 	public String show(@PathVariable Long id ,Model model) {
 		model.addAttribute("player",playerService.findOne(id));
 		return "players/show";
 	}
 
 
-	@PostMapping
+	@PostMapping("/players")
 	public String create( @ModelAttribute Player player ) {
 
 		playerService.save(player);
 		return "redirect:/players";
 	}
 
-	@PutMapping("{id}")
+	@PutMapping("players/{id}")
 	public String update(
 			@PathVariable Long id ,
 			@ModelAttribute Player player) {
@@ -61,7 +61,7 @@ public class PlayerController {
 		 return "redirect:/players";
 	}
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("players/{id}")
 	public String delete(
 			@PathVariable Long id ) {
 		 playerService.delete(id);
@@ -69,6 +69,31 @@ public class PlayerController {
 	}
 
 
+	/*
+	 *  Auth section
+	 *
+	 **/
+
+	@RequestMapping("/auth")
+	public String index(){
+		return "redirect:/players/messages";
+	}
+
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@PostMapping("/login")
+	public String loginPost() {
+		return "redirect:/login-error";
+	}
+
+	@GetMapping("/login-error")
+	public String loginError(Model model) {
+		model.addAttribute("loginError",true);
+		return "login" ;
+	}
 
 
 
